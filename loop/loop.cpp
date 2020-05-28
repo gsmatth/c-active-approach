@@ -6,29 +6,28 @@ using std::cin;
 using std::endl;
 
 
-// void display_even_numbers(int dividend)
-// {
+void display_even_numbers(int dividend)
+{
 
 
-//   while (dividend > 0 && dividend <=50)
-//   {
-//     if(dividend % 2 == 0)
-//     {
-//       cout << dividend << ", ";
-//       --dividend;
-//     }
-//     else 
-//     {
-//        --dividend;
-//     }
+  while (dividend > 0 && dividend <=50)
+  {
+    if(dividend % 2 == 0)
+    {
+      cout << dividend << endl;
+      --dividend;
+    }
+    else 
+    {
+       --dividend;
+    }
    
-//   }
-//   return;
-// }
+  }
+}
 
 int main()
 {
-// void display_even_numbers(int dividend);
+void display_even_numbers(int dividend);
 char again = '\0';//null character
 int operand1 = 0, operand2 = 0;
 
@@ -56,22 +55,7 @@ int dividend = 0;
 cout << "Enter a number between 1 -50: ";
 cin >> dividend;
 
-while (dividend > 0 && dividend <=50)
-  {
-
-    if(dividend % 2 == 0)
-    {
-      cout << dividend << endl;
-      --dividend;
-    }
-    else 
-    {
-       --dividend;
-    }
-   
-  }
-
-// display_even_numbers(dividend);
+display_even_numbers(dividend);
 
 
 
