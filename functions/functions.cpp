@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -13,8 +14,9 @@ void GetInput( float & salary, int & years_service );
 void CalcRaise( float & salary, int years_service );
 int CalcBonus( int years_service );
 void PrintCalculations( int years_service, float salary, int bonus );
-void GetTimeInput(int & hour, int & min, int & sec);
-void DisplayTime(int hour, int min, int sec);
+void GetTimeInput(int & hour, int & min, int & sec, bool & isAM);
+// you set default VALUES in the prototypes not the function definition
+void DisplayTime(int hour, int min, int sec, bool isAM, bool isStandard = true);
 
 int main()
 {
@@ -37,11 +39,45 @@ int main()
   // PrintCalculations( years_service, salary, bonus );
 
 int hour = 0, min = 0, sec = 0;
-GetTimeInput(hour, min, sec);
-DisplayTime(hour, min, sec);
+bool isAM;
+
+GetTimeInput(hour, min, sec, isAM);
+DisplayTime(hour, min, sec, isAM);
+//we are calling the function and passing an argument "false" which is one of teh default/optional parameters defined in the function prototype/declaration
+DisplayTime(hour, min, sec, isAM, false);
 
 return 0;
 };
+
+void GetTimeInput(int & hour, int & min, int & sec, bool & isAM)
+{
+  cout << "Enter time in format HH MM SS(12 30 45): ";
+  cin >> hour >> min >> sec;
+  cout << "Is this AM (true/false)? ";
+  cin >> isAM;
+
+}
+//you list the default parameters in definition but you do not assign VALUES to parameters
+void DisplayTime(int hour, int min, int sec, bool isAM, bool isStandard)
+{ 
+  if(isStandard && isAM)
+  {
+    cout << "The current time is " << hour << ":" << min << ":" << sec << "am" << endl;
+  }
+  if(isStandard && !isAM)
+  {
+    cout << "The current time is " << hour << ":" << min << ":" << sec << "pm" << endl;
+  }
+  if(!isStandard && isAM)
+  {
+    cout << "The current time is " << hour << ":" << min << ":" << sec << "hrs" << endl;
+  }
+  if(!isStandard && !isAM)
+  {
+    hour += 12;
+    cout << "The current time is " << hour << ":" << min << ":" << sec << "hrs" << endl;
+  }
+}
 
 // float DetermineAverage(int a, int b, int c)
 // {
@@ -137,14 +173,3 @@ output
 display time in standard format or military format
 */
 
-void GetTimeInput(int & hour, int & min, int & sec)
-{
-  cout << "Enter time in format HH MM SS(12 30 45): ";
-  cin >> hour >> min >> sec;
-
-}
-
-void DisplayTime(int hour, int min, int sec)
-{
-  cout << "The current time is " << hour << ":" << min << ":" << sec << endl;
-}
