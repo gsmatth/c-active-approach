@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <cctype>
 
 
 using std::cout;
@@ -43,12 +44,18 @@ bool isAM;
 
 GetTimeInput(hour, min, sec, isAM);
 DisplayTime(hour, min, sec, isAM);
-//we are calling the function and passing an argument "false" which is one of teh default/optional parameters defined in the function prototype/declaration
+//we are calling the function and passing an argument "false" which is one of the default/optional parameters defined in the function prototype/declaration
 DisplayTime(hour, min, sec, isAM, false);
 
 return 0;
 };
 
+/******************************************************************
+*Name:  GetTimeInput
+*Parameters: hour, min, sec, isAM.  By Reference
+*Return:  none
+*Purpose:  Get and read time input from user and assign those values to the corresponding variables in main program
+********************************************************************/
 void GetTimeInput(int & hour, int & min, int & sec, bool & isAM)
 {
   cout << "Enter time in format HH MM SS(12 30 45): ";
@@ -57,25 +64,33 @@ void GetTimeInput(int & hour, int & min, int & sec, bool & isAM)
   cin >> isAM;
 
 }
-//you list the default parameters in definition but you do not assign VALUES to parameters
+/******************************************************************
+*Name:  DisplayTime
+*Parameters: hour, min, sec.  By Value
+*           isAM, isStandard.  By value
+*Return:  none
+*Purpose:  Display the time in proper format for either standard time or military time
+********************************************************************/
+
+//you list the default parameters in a function definition but you do not assign VALUES to parameters in the function definition
 void DisplayTime(int hour, int min, int sec, bool isAM, bool isStandard)
 { 
   if(isStandard && isAM)
   {
-    cout << "The current time is " << hour << ":" << min << ":" << sec << "am" << endl;
+    cout << "The current time is " << hour << ":" << min << ":" << sec << " am" << endl;
   }
   if(isStandard && !isAM)
   {
-    cout << "The current time is " << hour << ":" << min << ":" << sec << "pm" << endl;
+    cout << "The current time is " << hour << ":" << min << ":" << sec << " pm" << endl;
   }
   if(!isStandard && isAM)
   {
-    cout << "The current time is " << hour << ":" << min << ":" << sec << "hrs" << endl;
+    cout << "The current time is " << hour << ":" << min << ":" << sec << " hrs" << endl;
   }
   if(!isStandard && !isAM)
   {
     hour += 12;
-    cout << "The current time is " << hour << ":" << min << ":" << sec << "hrs" << endl;
+    cout << "The current time is " << hour << ":" << min << ":" << sec << " hrs" << endl;
   }
 }
 
