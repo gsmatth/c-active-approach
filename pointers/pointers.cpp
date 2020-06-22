@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 
 using std::cin;
 using std::cout;
@@ -10,6 +11,8 @@ void FormatNegative(int * numerator, int * denominator);
 void DisplayFraction( int numerator, int denominator);
 void PointerMath();
 void DisplayArrayContent(int rows, int columns);
+void DeleteCStringSection(char * cStringArray, int start_index, int num_char_to_delete);
+int CharAt(char * str, char ch);
 
 int main(){
 
@@ -68,6 +71,18 @@ GetFraction(&numerator, &denominator);
 PointerMath();
 DisplayArrayContent(4,6);
 
+//-----------------------Pointer Math------------------------------------//
+
+char test_string[50] = "this is the initialized cString";
+char * test_ptr = test_string; 
+cout << "This is test_string before DeleteCStringSectionfunction is called: " << test_string << endl;
+
+DeleteCStringSection(test_ptr, 0, 6);
+
+cout << "This is test_string after copy: " << test_string << endl;
+
+int char_at = CharAt(test_ptr, 'c');
+cout << "The charAt output is: " << char_at << endl;
 return 0;
 }
 
@@ -136,7 +151,6 @@ void DisplayArrayContent(int rows, int columns)
 {
 
   int intArray[rows][columns];
-  int array_ptr = &intArray;
 
   for(int i = 0; i < rows; i++){
     for(int j = 0; j < columns; j++)
@@ -144,10 +158,45 @@ void DisplayArrayContent(int rows, int columns)
       intArray[i][j] = (i + j) + 5;
     }
   }
+
   for(int i = 0; i < rows; i++)
+  {
+     int * array_row = intArray[i];
+
     for(int j = 0; j < columns; j++)
     {
-      cout << "intArray: " << array_ptr << endl;
+      cout << *(array_row + j) << ", ";
     }
+    cout << endl;
+  }
+   
   
 }
+
+void DeleteCStringSection(char * cStringArray, int start_index, int num_char_to_delete)
+{
+/*
+second argument to strcpy is the cString source that will be copied to the array defined by the first argument, overwritign any previous content in the array.  We are completely overwriting the same cString (first argument) with part of the same cString (second argument)
+*/
+strcpy(cStringArray + start_index, cStringArray + start_index + num_char_to_delete);
+
+}
+
+int CharAt(char * str, char ch)
+{
+  char * cur = str;
+  int return_value = -1;
+
+  while(* cur != '\0' && * cur != ch)
+  {
+    cur++;
+  }
+  if(* cur != '\0')
+  {
+    return_value = static_cast<int> (cur - str);
+  }
+  return return_value;
+}
+
+
+
