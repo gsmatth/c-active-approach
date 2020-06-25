@@ -18,6 +18,10 @@ int FindMode(int values[], int num_values);
 
 int main()
 {
+
+  /*
+  Although a constant or literal must be used in the brackets when the array is declared, variables can be used within the subscript operator to access a specific element.
+  */
   char first_name[MAX_VALUES] = "Billy";
   char last_name[MAX_VALUES] = {'o'};
   char temp_name[MAX_VALUES] = {'o'};
