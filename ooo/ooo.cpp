@@ -12,28 +12,29 @@ using std::endl;
 
 //----Classes are defined before main---------------------------------//
 //--------------------Class Definition Begins---------------------------//
-  // class Engine
-  // {
-  //   public:
-  //     void Start();
+  class Engine
+  {
+    public:
+      Engine(int cyl, float displace, char manf[], FuelType fuel);
+      void Start();
 
-  //     //A setter is a member function that is passed a parameter, which will then be assigned to a specific data member.
-  //     void SetCylinders(unsigned short cylinders);
+      //A setter is a member function that is passed a parameter, which will then be assigned to a specific data member.
+      void SetCylinders(unsigned short cylinders);
 
 
-  //      //A getter is a member function that returns the value of a specific data member
-  //     unsigned short GetCylinders();
+       //A getter is a member function that returns the value of a specific data member
+      unsigned short GetCylinders();
 
-  //   private:
-  //     void HeatGlowPlugs();
-  //     void SendPowerToStarter();
+    private:
+      void HeatGlowPlugs();
+      void SendPowerToStarter();
 
-  //     unsigned short m_cylinders;
-  //     float m_displacement;
-  //     char m_manufacturer[35];
-  //     FuelType m_fuel;
+      unsigned short m_cylinders;
+      float m_displacement;
+      char m_manufacturer[35];
+      FuelType m_fuel;
 
-  // };
+  };
 
   //--------------------Class Definition Ends---------------------------//
 
@@ -43,45 +44,57 @@ using std::endl;
   we use the binary scope resolution operator (::) to specify that the Start method belongs to the Engine class
   */
 
-  // void HeatGlowPlugs()
-  // {
-  //   cout<<"glow plug" << endl;
-  // };
-  // void SendPowerToStarter()
-  // {
-  //   cout << "power to starter" << endl;
-  // };
+  void Engine::HeatGlowPlugs()
+  {
+    cout<<"glow plug" << endl;
+  };
+  void Engine::SendPowerToStarter()
+  {
+    cout << "power to starter" << endl;
+  };
 
-  // void Engine::Start()
-  // {
-  //   if(m_fuel == DIESEL)
-  //   {
-  //     HeatGlowPlugs();
-  //   }
+  void Engine::Start()
+  {
+    if(m_fuel == DIESEL)
+    {
+      HeatGlowPlugs();
+    }
     
-  //   SendPowerToStarter();
-  // }
+    SendPowerToStarter();
+  }
 
-  // //setter
-  // void Engine::SetCylinders(unsigned short cylinders)
-  // {
-  //   m_cylinders = cylinders;
-  // }
+  //setter
+  void Engine::SetCylinders(unsigned short cylinders)
+  {
+    m_cylinders = cylinders;
+  }
 
-  // //getter
-  // unsigned short Engine::GetCylinders()
-  // {
-  //   return m_cylinders;
-  // };
+  //getter
+  unsigned short Engine::GetCylinders()
+  {
+    return m_cylinders;
+  };
 
+
+//-----------------------Class Constructor Overloading Starts-----------------//
+// constructor prototype added to class definition above also
+Engine::Engine(int cyl, float displace, char manf[], FuelType fuel)
+{
+  m_cylinders = cyl;
+  m_displacement = displace;
+  strcpy(m_manufacturer, manf);
+  m_fuel = fuel;
+}
+
+
+
+//-----------------------Class Constructor Overloading Ends-----------------//
 
 
 
   // //Each of these objects below has their own copy of the data members specified in the class definition. The methods of the class, however, are shared among all of its objects.
 
-  // Engine V8;
-  // Engine * V6_ptr = new Engine;
-  // Engine assembly_line[35];
+  
 
 //-----------------------Amother example class----------------------//
 class Person 
@@ -124,15 +137,41 @@ char Person::GetGender()
 class Sample 
 {
   public:
+    Sample();
+    Sample(short int age, float shoe_size);
+    ~Sample();
     short int GetAge()
     {
       return m_age;
+    };
+     float GetShoeSize()
+    {
+      return m_shoe_size;
     };
 
   private:
     short int m_age;
     float m_shoe_size;
 };
+
+Sample::Sample()
+{
+
+}
+
+Sample::Sample(short int age, float shoe_size)
+{
+  cout << "The Sample constructor has been called" << endl;
+  m_age = age;
+  m_shoe_size = shoe_size;
+}
+
+//really not needed, just added to show when it is called automatically
+Sample::~Sample()
+{
+  cout << "Sample destructor called" << endl;
+}
+
 
 
 
@@ -159,6 +198,12 @@ int main()
   cout << "first character in test: " << test[0] << endl;
   cout << "length of test: " << test.length() << endl;
 
+  // Engine V8;
+  // Engine * V6_ptr = new Engine;
+  // Engine assembly_line[35];
+  Engine V12 (12, 6.7, "Big Block", GASOLINE);
+  cout << "cylinders of V12: " << V12.GetCylinders() << endl;
+
   Sample s1;
   cout << "The age of s1 is: " << s1.GetAge() << endl;
 
@@ -168,11 +213,28 @@ int main()
 
  Sample * dyna_alloc_sample = new Sample;
  cout << "Address of dyna_alloc_sample: " << & dyna_alloc_sample << endl;
- cout << "The age of the second Sample in Array is: " << dyna_alloc_sample->GetAge() << endl;
+ cout << "The age of the second Sample in Array is: " << 
  
+ dyna_alloc_sample->GetAge() << endl;
+
+ Sample overload_constructor_example = Sample(46, 8.5);
+ cout << "sample age: " <<overload_constructor_example.GetAge() <<'\t'
+      <<"sample shoe size: " << overload_constructor_example.GetShoeSize() << endl;
+
 
  delete dyna_alloc_sample;
  cout << "Address of dyna_alloc_sample: " << & dyna_alloc_sample << endl;
+
+Sample penta_sample[5];
+ for(int i = 0; i < 5; i++){
+   penta_sample[i] = Sample(( i + 54), ( i + 3.5));
+ }
+
+ for(int i = 0; i < 5; i++)
+ {
+   cout <<"sample age" << penta_sample[i].GetAge() <<'\t' 
+        <<"sample shoe size: " <<penta_sample[i].GetShoeSize() << endl;
+ }
 
   return 0;
 }
