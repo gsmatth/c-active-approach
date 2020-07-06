@@ -1,3 +1,7 @@
+#ifndef ENGINE_H//if not defined
+#define ENGINE_H//Define it
+
+
 enum FuelType {GASOLINE, DIESEL};
 
 class Engine 
@@ -14,5 +18,7 @@ class Engine
       FuelType m_fuel;
 
 };
+
+#endif//end of conditional compilation
 
 
