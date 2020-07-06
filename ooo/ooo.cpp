@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "Engine.cpp"
 
 using std::string;
 using std::cout;
@@ -7,34 +8,31 @@ using std::cin;
 using std::endl;
 
 
- enum FuelType {GASOLINE, DIESEL};
-
-
 //----Classes are defined before main---------------------------------//
 //--------------------Class Definition Begins---------------------------//
-  class Engine
-  {
-    public:
-      Engine(int cyl, float displace, char manf[], FuelType fuel);
-      void Start();
+  // class Engine
+  // {
+  //   public:
+  //     Engine(int cyl, float displace, char manf[], FuelType fuel);
+  //     void Start();
 
-      //A setter is a member function that is passed a parameter, which will then be assigned to a specific data member.
-      void SetCylinders(unsigned short cylinders);
+  //     //A setter is a member function that is passed a parameter, which will then be assigned to a specific data member.
+  //     void SetCylinders(unsigned short cylinders);
 
 
-       //A getter is a member function that returns the value of a specific data member
-      unsigned short GetCylinders();
+  //      //A getter is a member function that returns the value of a specific data member
+  //     unsigned short GetCylinders();
 
-    private:
-      void HeatGlowPlugs();
-      void SendPowerToStarter();
+  //   private:
+  //     void HeatGlowPlugs();
+  //     void SendPowerToStarter();
 
-      unsigned short m_cylinders;
-      float m_displacement;
-      char m_manufacturer[35];
-      FuelType m_fuel;
+  //     unsigned short m_cylinders;
+  //     float m_displacement;
+  //     char m_manufacturer[35];
+  //     FuelType m_fuel;
 
-  };
+  // };
 
   //--------------------Class Definition Ends---------------------------//
 
@@ -44,47 +42,47 @@ using std::endl;
   we use the binary scope resolution operator (::) to specify that the Start method belongs to the Engine class
   */
 
-  void Engine::HeatGlowPlugs()
-  {
-    cout<<"glow plug" << endl;
-  };
-  void Engine::SendPowerToStarter()
-  {
-    cout << "power to starter" << endl;
-  };
+  // void Engine::HeatGlowPlugs()
+  // {
+  //   cout<<"glow plug" << endl;
+  // };
+  // void Engine::SendPowerToStarter()
+  // {
+  //   cout << "power to starter" << endl;
+  // };
 
-  void Engine::Start()
-  {
-    if(m_fuel == DIESEL)
-    {
-      HeatGlowPlugs();
-    }
+  // void Engine::Start()
+  // {
+  //   if(m_fuel == DIESEL)
+  //   {
+  //     HeatGlowPlugs();
+  //   }
     
-    SendPowerToStarter();
-  }
+  //   SendPowerToStarter();
+  // }
 
-  //setter
-  void Engine::SetCylinders(unsigned short cylinders)
-  {
-    m_cylinders = cylinders;
-  }
+  // //setter
+  // void Engine::SetCylinders(unsigned short cylinders)
+  // {
+  //   m_cylinders = cylinders;
+  // }
 
-  //getter
-  unsigned short Engine::GetCylinders()
-  {
-    return m_cylinders;
-  };
+  // //getter
+  // unsigned short Engine::GetCylinders()
+  // {
+  //   return m_cylinders;
+  // };
 
 
 //-----------------------Class Constructor Overloading Starts-----------------//
 // constructor prototype added to class definition above also
-Engine::Engine(int cyl, float displace, char manf[], FuelType fuel)
-{
-  m_cylinders = cyl;
-  m_displacement = displace;
-  strcpy(m_manufacturer, manf);
-  m_fuel = fuel;
-}
+// Engine::Engine(int cyl, float displace, char manf[], FuelType fuel)
+// {
+//   m_cylinders = cyl;
+//   m_displacement = displace;
+//   strcpy(m_manufacturer, manf);
+//   m_fuel = fuel;
+// }
 
 
 
