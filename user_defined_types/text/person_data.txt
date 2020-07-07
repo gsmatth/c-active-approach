@@ -1,0 +1,6 @@
+
+bob 23 m
+bob 34 f
+rr 32 f
+ww 22 m
+bbb 44 m

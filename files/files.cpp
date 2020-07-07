@@ -39,6 +39,7 @@ int main()
   }
 
 ofstream edittextfile;//declare ofstream object
+
 edittextfile.open("./text/Sample.txt", ios::app);
 if(edittextfile.is_open())
 {
