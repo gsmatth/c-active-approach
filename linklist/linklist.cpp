@@ -82,6 +82,60 @@ void Prepend( StudentNode * student_node, StudentNode * & head)
   head =  student_node;
 }
 
+void Append(StudentNode * student_node, StudentNode * & head)
+{
+  StudentNode * travel = nullptr;
+  
+  if(head == nullptr)
+  {
+    head = student_node;
+  }
+  else
+  {
+    travel = head;
+    while(travel->next != nullptr)
+    {
+      travel = travel->next;
+    }
+    travel->next =  student_node;
+  }
+}
+
+void InsertOrdered(StudentNode * student_node, StudentNode * & head)
+{
+  StudentNode * travel = nullptr;
+  StudentNode * trail = nullptr;
+
+  if(head == nullptr || student_node->data.id <= head->data.id)
+  {
+    student_node->next = head;
+    head = student_node;
+  }
+  else
+  {
+    travel = head;
+    trail = nullptr;
+    while(travel != nullptr && travel->data.id < student_node->data.id)
+    {
+      trail = travel;
+      travel = travel->next;
+    }
+    trail->next = student_node;
+    student_node = travel;
+  }
+}
+
+void Purge(StudentNode * & head)
+{
+  StudentNode * trail = nullptr;
+
+  while(head != nullptr)
+  {
+    trail = head;
+    head = head->next;
+    delete trail;
+  }
+}
 
 
 
@@ -89,27 +143,26 @@ int main(){
 
 // Node * head = nullptr;
 StudentNode * head = nullptr;
-Student test_student {12345, "Chemistry", 3.5};
-Student test_student1 {5678, "Chemistry", 3.5};
-Student test_student2 {2468, "Chemistry", 3.5};
-StudentNode * test_student_node = CreateStudentNode(test_student);
+Student test_student0 {1, "Chemistry", 3.5};
+Student test_student1 {3, "Chemistry", 3.5};
+Student test_student2 {4, "Chemistry", 3.5};
+Student test_student3 {5, "Physics", 3.0};
+Student test_student4 {6, "Math", 2.0};
+StudentNode * test_student_node0 = CreateStudentNode(test_student0);
 StudentNode * test_student_node1 = CreateStudentNode(test_student1);
 StudentNode * test_student_node2 = CreateStudentNode(test_student2);
-Prepend(test_student_node,  head);
-Prepend(test_student_node1,  head);
-Prepend(test_student_node2,  head);
-
-
-
-
-
-
-
-
-
-
-
-
+StudentNode * test_student_node3 = CreateStudentNode(test_student3);
+StudentNode * test_student_node4 = CreateStudentNode(test_student4);
+// Prepend(test_student_node0,  head);
+// Prepend(test_student_node1,  head);
+// Prepend(test_student_node2,  head);
+// Append( test_student_node3, head);
+InsertOrdered(test_student_node0, head);
+InsertOrdered(test_student_node1, head);
+InsertOrdered(test_student_node2, head);
+InsertOrdered(test_student_node3, head);
+InsertOrdered(test_student_node4, head);
+Purge(head);
 
   return 0;
 }
