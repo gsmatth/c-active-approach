@@ -286,7 +286,7 @@ void DisplayArrayContent(int rows, int columns)
 void DeleteCStringSection(char * cStringArray, int start_index, int num_char_to_delete)
 {
 /*
-second argument to strcpy is the cString source that will be copied to the array defined by the first argument, overwritign any previous content in the array.  We are completely overwriting the same cString (first argument) with part of the same cString (second argument)
+second argument to strcpy is the cString source that will be copied to the array defined by the first argument, overwriting any previous content in the array.  We are completely overwriting the same cString (first argument) with part of the same cString (second argument)
 */
 strcpy(cStringArray + start_index, cStringArray + start_index + num_char_to_delete);
 
@@ -389,7 +389,7 @@ we flush the input buffer before and after our call to .getline. The first .igno
 
 the .ignore member function removes a certain number of characters from the keyboard/input buffer. Everything in the parentheses for the .ignore function call allows us to find the number of characters currently in the keyboard buffer:
 
-  - rdbuf  returns a pointer to the stream buffer object currently associated with the stream (in this case "cin" or input buffer).
+  - rdbuf  returns a pointer to the stream buffer object (streambuf) currently associated with the stream (in this case "cin" or input buffer). The streambuf object is in charge of reading/writing and acts as the intermediary between the stream object and the input or output device.
 
   - in-avail returns the number of characters available to read in the input buffer identified by rdbuf
 */
